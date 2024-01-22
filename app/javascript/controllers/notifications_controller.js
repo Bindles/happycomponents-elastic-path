@@ -1,10 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
+// import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="notifications"
-export default class extends Controller {
-  connect() {
-  }
-}
+// // Connects to data-controller="notifications"
+// export default class extends Controller {
+//   connect() {
+//   }
+// }
 
 // import { Controller } from "@hotwired/stimulus"
 // import Notification from 'stimulus-notification'
@@ -27,3 +27,11 @@ export default class extends Controller {
 
 
 
+import Notification from 'stimulus-notification'
+
+export default class extends Notification {
+  connect() {
+    super.connect()
+    console.log('Do what you want here.')
+  }
+}

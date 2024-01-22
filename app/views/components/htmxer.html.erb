@@ -15,6 +15,7 @@
       <%= component.name %>
       <a href="#" hx-get="/components/<%= component.id %>"  hx-swap="#mydiv" hx-target="#aaa">Click</a>
       <%= link_to "Inspect", inspectc_components_path(component_id: component.id), remote: true, data: { turbo_frame: 'modalFrame', toggle: "modal", target: "#inspectModal" } %>
+      <%= link_to "Inspectest", inspectc_components_path(component_id: component.id) %>
 
     </div>
   <% end %>

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       #get 'inspectc/:id', on: :member, action: :inspectc, as: 'inspectc'
       get 'inspectc' => 'components#inspectc'
       get 'gunparam' => 'components#gunparam' 
-      get 'htmxer'      
+      get 'htmxer'
+      get 'index2'      
+      get 'index3'  
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,4 +17,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "components#index"
+  #root 'components#index2'
+  post 'search', to: 'search#index', as: 'search'
+  post 'search/suggestions', to: 'search#suggestions', as: 'search_suggestions'
 end

@@ -16,9 +16,19 @@ end
 
 # app/controllers/components_controller.rb
 def inspectc
+  p params[:name]
+  p params[:name]
+  p params[:id]
+  p params[:id]
   @component_id = params[:id]
-  puts @component_id
-  @selected_component = Component.find(@component_id)
+  p "component_id => params id"
+  puts @component_id.inspect
+  @component_name = params[:component_name]
+  p 'NAMSAMNSAS'
+  puts @component_name
+  @selected_component = Component.find(params[:id])
+  #@selected_component = Component.find_by(name: params[:name])
+  #@selected_component = Component.find_by(name: params[:name])
   puts @selected_component.inspect
   #flash[:notice] = "Nice"
   #value = flash[:my_var]
@@ -35,12 +45,50 @@ def inspectc
   puts @selected_component
   puts @selected_component[:name]
                                       #append
-    #render turbo_stream: turbo_stream.replace('targ', partial: 'test_partial', locals: { component: @component})
+    render turbo_stream: turbo_stream.replace('targ', partial: 'test_partial', locals: { component: @component})
     #render turbo_stream: turbo_stream.remove("modalFrame_#{params[:id]}")
-    render turbo_stream: turbo_stream.replace("modalFrame", partial: 'modal_content', locals: { component: @selected_component })
-    #render turbo_stream: turbo_stream.append("modalFrame", partial: 'modal_content', locals: { component: @selected_component, id: @selected_component.id })
+    #render turbo_stream: turbo_stream.replace("modalFrame", partial: 'modal_content', locals: { component: @selected_component })
+    ##render turbo_stream: turbo_stream.append("modalFrame", partial: 'modal_content', locals: { component: @selected_component, id: @selected_component.id })
+    #render partial: 'modal_content', locals: { component: @selected_component }
+
 
     
+end
+
+def index3
+  @my_var = "This is an instance variable IT WORKED"
+  flash[:my_var] = @my_var
+  #sort_by = params[:sort_by]
+  #order   = params[:order]
+
+
+  @components = if params[:search]
+    Component.where('name LIKE ?', "%#{params[:search]}%")
+  else
+    Component.all
+  end
+
+  if params[:sort_by].present? && params[:order].present?
+  @components = @components.order(params[:sort_by] => params[:order])
+  end
+end
+
+def index2
+  @my_var = "This is an instance variable IT WORKED"
+  flash[:my_var] = @my_var
+  #sort_by = params[:sort_by]
+  #order   = params[:order]
+
+
+  @components = if params[:search]
+    Component.where('name LIKE ?', "%#{params[:search]}%")
+  else
+    Component.all
+  end
+
+  if params[:sort_by].present? && params[:order].present?
+  @components = @components.order(params[:sort_by] => params[:order])
+  end
 end
 
   # GET /components or /components.json
@@ -57,10 +105,9 @@ end
       Component.all
     end
 
-  if params[:sort_by].present? && params[:order].present?
-  @components = @components.order(params[:sort_by] => params[:order])
-  end
-
+    if params[:sort_by].present? && params[:order].present?
+    @components = @components.order(params[:sort_by] => params[:order])
+    end
   end
   # GET /components/1 or /components/1.json
   def show

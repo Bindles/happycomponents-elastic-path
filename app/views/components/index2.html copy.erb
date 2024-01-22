@@ -1,0 +1,11 @@
+a
+<% @components.each do |component| %>
+<div class="p-4 border border-grey-300 rounded-lg">
+  <h2><%= component.name %></h2>
+  <p><%= component.lang %></p>
+  <p><%= component.category %></p>
+  <p><%= component.code %></p>
+  <p><%= link_to 'Show Components', component, class: "text-blue-500" %>
+  </p>
+</div>
+<% end %>

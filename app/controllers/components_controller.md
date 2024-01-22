@@ -18,7 +18,7 @@ end
 def inspectc
   @component_id = params[:id]
   puts @component_id
-  @selected_component = Component.find(@component_id)
+  @selected_component = Component.find(1)
   puts @selected_component.inspect
   #flash[:notice] = "Nice"
   #value = flash[:my_var]
@@ -35,8 +35,8 @@ def inspectc
   puts @selected_component
   puts @selected_component[:name]
                                       #append
-    #render turbo_stream: turbo_stream.replace('targ', partial: 'test_partial', locals: { component: @component})
-    render turbo_stream: turbo_stream.replace('modalFrame', partial: 'modal_content', locals: { component: @selected_component })
+    render turbo_stream: turbo_stream.replace('targ', partial: 'test_partial', locals: { component: @component})
+    #render turbo_stream: turbo_stream.replace('modalFrame', partial: 'modal_content', locals: { component: @selected_component })
 end
 
   # GET /components or /components.json
