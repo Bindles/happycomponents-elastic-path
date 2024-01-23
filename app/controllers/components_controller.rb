@@ -91,6 +91,49 @@ def index2
   end
 end
 
+def index6
+  @components = if params[:search]
+    Component.where('name LIKE ?', "%#{params[:search]}%")
+  else
+    Component.all
+  end
+
+  if params[:sort_by].present? && params[:order].present?
+  @components = @components.order(params[:sort_by] => params[:order])
+  end
+end
+
+def index5
+  @my_var = "This is an instance variable IT WORKED"
+  flash[:my_var] = @my_var
+  #sort_by = params[:sort_by]
+  #order   = params[:order]
+
+
+  @components = if params[:search]
+    Component.where('name LIKE ?', "%#{params[:search]}%")
+  else
+    Component.all
+  end
+
+  if params[:sort_by].present? && params[:order].present?
+  @components = @components.order(params[:sort_by] => params[:order])
+  end
+end
+
+
+def index4
+  @components = if params[:search]
+    Component.where('name LIKE ?', "%#{params[:search]}%")
+  else
+    Component.all
+  end
+
+  if params[:sort_by].present? && params[:order].present?
+  @components = @components.order(params[:sort_by] => params[:order])
+  end
+end
+
   # GET /components or /components.json
   def index
     @my_var = "This is an instance variable IT WORKED"

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       get 'htmxer'
       get 'index2'      
       get 'index3'  
+      get 'index4'
+      get 'index5'
+      get 'index6'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,6 +21,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "components#index"
   #root 'components#index2'
+
+  get 'index4', to: 'components#index4'
+
   post 'search', to: 'search#index', as: 'search'
   post 'search/suggestions', to: 'search#suggestions', as: 'search_suggestions'
 end

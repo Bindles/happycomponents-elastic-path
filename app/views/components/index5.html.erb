@@ -1,0 +1,33 @@
+<div id="components">
+  <% @components.each do |component| %>
+    <%= render component %>
+    <p>
+      <%= link_to "Show this component", component %>
+      <%# MODAL WITH HTMX%>
+      <%= link_to "Inspect", inspectc_components_path(id: component.id), remote: true, data: { toggle: "modal", target: "#inspectModal" } %>
+      <%= link_to 'Load Inspectc turbo_frame', inspectc_components_path(id: component.id),
+              data: { turbo_frame: 'targ' }, 
+              class: 'your-other-classes-here' %>
+      <%= link_to 'Load Pokemon TURBO tf-pokemon-list', inspectc_components_path, 
+              data: { turbo_frame: 'targ' }, 
+              class: 'your-other-classes-here' %>
+
+      <%= link_to "Inspect", gunparam_components_path(component_name: component.name), data: { toggle: "modal", target: "#inspectModal" } %>
+    </p>
+  <% end %>
+</div>
+
+<div id="replaceme"></div>
+<div id="color-circles">
+  <% @components.each do |component| %>
+  AA
+    <div class="color-circle" hx-get="/components/components?order=asc&sort_by=name" hx-swap="innerHTML" hx-target="#replaceme">
+      <!-- Display your color circles here -->
+      <%= component.name %>
+    </div>
+  <% end %>
+</div>
+
+<div id="selected-color-name">
+  <!-- This div will be updated with the selected color's name -->
+</div>
